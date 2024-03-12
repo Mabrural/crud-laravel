@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 03, 2024 at 11:31 AM
+-- Generation Time: Mar 05, 2024 at 02:49 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `laravel_10_crud`
+-- Database: `crud_student`
 --
 
 -- --------------------------------------------------------
@@ -58,7 +58,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (2, '2014_10_12_100000_create_password_reset_tokens_table', 1),
 (3, '2019_08_19_000000_create_failed_jobs_table', 1),
 (4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(5, '2024_03_03_094633_create_products_table', 1);
+(5, '2024_03_03_094633_create_products_table', 1),
+(6, '2024_03_05_130234_create_students_table', 1);
 
 -- --------------------------------------------------------
 
@@ -105,13 +106,29 @@ CREATE TABLE `products` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `products`
+-- Table structure for table `students`
 --
 
-INSERT INTO `products` (`id`, `name`, `detail`, `created_at`, `updated_at`) VALUES
-(1, 'Sepatu Ventelaa', 'Ukuran 41, 42, 43, 44', '2024-03-03 03:22:14', '2024-03-03 03:23:25'),
-(2, 'Sepatu Safety Kings', 'Ukuran 40', '2024-03-03 03:23:16', '2024-03-03 03:23:16');
+CREATE TABLE `students` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `nim` varchar(255) NOT NULL,
+  `nama` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `prodi` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `students`
+--
+
+INSERT INTO `students` (`id`, `nim`, `nama`, `email`, `prodi`, `created_at`, `updated_at`) VALUES
+(1, '4342311001', 'Muhammad Mabrur Al Mutaqi', 'mabruralmutaqi@gmail.com', 'TRPL', '2024-03-05 06:38:42', '2024-03-05 06:38:42'),
+(2, '4342311012', 'Rizky Nurfadhilah', 'kiki@gmail.com', 'TRPL-', '2024-03-05 06:39:16', '2024-03-05 06:39:39');
 
 -- --------------------------------------------------------
 
@@ -168,6 +185,13 @@ ALTER TABLE `products`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `students`
+--
+ALTER TABLE `students`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `students_nim_unique` (`nim`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -188,7 +212,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -200,7 +224,13 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `students`
+--
+ALTER TABLE `students`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
